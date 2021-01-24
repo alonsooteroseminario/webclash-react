@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HolaMundo = () => {
+const NavBar = () => {
   // Esto es JavaScript:
   const claseCSSHolaMundo = 'container-red';
   const mensajeTextoHTML = 'Tienda Marketplace Webclash';
@@ -16,4 +16,4 @@ const HolaMundo = () => {
   );
 }
 
-export default HolaMundo;
+export default NavBar;
