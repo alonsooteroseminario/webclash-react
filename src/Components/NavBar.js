@@ -1,18 +1,19 @@
 import React from 'react';
+import CartWidget from './CartWidget'
 
 const NavBar = () => {
-  // Esto es JavaScript:
-  const claseCSSHolaMundo = 'container-red';
-  const mensajeTextoHTML = 'Tienda Marketplace Webclash';
-
-  // Esto es JSX (HTML + JavaScript):
   return (
-    <nav className={claseCSSHolaMundo}>
-      <h1>{mensajeTextoHTML}</h1>
-      <p>1. Tuberias.</p>
-      <p>2. Ductos.</p>
-      <p>3. Equipos Elecricos</p>
-    </nav>
+    <div>
+        <ul className="nav nav-tabs justify-content-end">
+            <li className="nav-item">
+                <h4>Cart Webclash</h4>
+            </li>
+            <li className="nav-item"> 
+                <CartWidget />
+            </li>
+        </ul>
+    </div>
+
   );
 }
 
