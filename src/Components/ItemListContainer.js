@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ItemListContainer extends Component {
-    render() {
-        const greeting = 'Aqui abajo irá la lista de nuestros productos';
 
-        return (
-            <div>
-                <h3>{greeting}</h3>
-            </div>
-        );
-    }
+const ItemListContainer = (props) => {
+    return (
+        <div style={{ background: 'red' }}>
+            <h3>hola{props.greeting}</h3>
+        </div>
+    );
 }
 
 export default ItemListContainer;
