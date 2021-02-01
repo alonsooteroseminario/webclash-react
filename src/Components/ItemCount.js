@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-const ItemCount = ( { stock, initial, onAdd } ) => {
+function ItemCount ( { stock, initial, onAdd } ) {
 
     const [carrito, setCarrito] = useState( Number(stock) );
 
     const [count, setCount] = useState(Number(initial));
 
-
-    const [suma, setSuma] = useState(document.getElementById('input'));
-    // const suma = 1;
+    const [suma, setSuma] = useState(Number(initial));
 
     const incrementCount = () => {
         setCount(count - suma);
         setCarrito(carrito - suma);
-        setSuma();
+
     }
 
-
-    
-
-
-    console.log('carrito : ' + carrito);
-    console.log('count : ' + count);
-    console.log('suma : ' + suma);
-
-
-
-
+    console.log('Stock : ' + carrito);
+    console.log('Agregados : ' + suma);
 
     useEffect( () => {
         console.log('App mounted');
@@ -44,9 +33,7 @@ const ItemCount = ( { stock, initial, onAdd } ) => {
                 </button>
                 {/* stock = 5 */}
                 <p>Stock Disponible: { Number(count) + Number(stock) } </p>
-                <p>
-                    <h1>No hay stock disponible</h1>
-                </p>
+                <h1>No hay stock disponible</h1>
             </div>
         );
         
@@ -61,8 +48,7 @@ const ItemCount = ( { stock, initial, onAdd } ) => {
                 </button>
                 {/* stock = 5 */}
                 <p>Stock Disponible: 0 </p>
-                
-                    <h1>No hay stock disponible</h1>
+                <h1>No hay stock disponible</h1>
                 
             </div>
         );
@@ -70,13 +56,12 @@ const ItemCount = ( { stock, initial, onAdd } ) => {
     {
         return(
             <div>
-                <input id="input" ></input>
+                <input className="form-product" type="number" name="form-product" value={suma} onChange={ e => setSuma(e.target.value)} ></input>
                 <button onClick={incrementCount}>
                     Agregar al carrito
                 </button>
                 {/* stock = 5 */}
                 <p>Stock Disponible: { Number(count) + Number(stock) } </p>
-
             </div>
     
         );
@@ -85,12 +70,6 @@ const ItemCount = ( { stock, initial, onAdd } ) => {
 
 }
 
-
-function onAdd(number1, number2) {
-    let a = Number(number1);
-    let b = Number(number2) + a;
-    return b;
-}
 
 
 export default ItemCount;
