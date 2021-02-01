@@ -16,6 +16,7 @@ function ItemCount ( { stock, initial, onAdd } ) {
 
     console.log('Stock : ' + carrito);
     console.log('Agregados : ' + suma);
+    console.log('Count : ' + count);
 
     useEffect( () => {
         console.log('App mounted');
@@ -52,19 +53,39 @@ function ItemCount ( { stock, initial, onAdd } ) {
                 
             </div>
         );
-    } else 
+    } 
+
+    else
     {
-        return(
-            <div>
-                <input className="form-product" type="number" name="form-product" value={suma} onChange={ e => setSuma(e.target.value)} ></input>
-                <button onClick={incrementCount}>
-                    Agregar al carrito
-                </button>
-                {/* stock = 5 */}
-                <p>Stock Disponible: { Number(count) + Number(stock) } </p>
-            </div>
-    
-        );
+
+        if ( suma > carrito - count ) {
+            return(
+                <div>
+                    <input className="form-product" type="number" name="form-product" value={suma} onChange={ e => setSuma(e.target.value)} ></input>
+                    <button>
+                        Agregar al carrito
+                    </button>
+                    {/* stock = 5 */}
+                    <p> El contador no puede ser mayor al Stock Disponible </p>
+                </div>
+        
+            );
+        }
+        else {
+            return(
+                <div>
+                    <input className="form-product" type="number" name="form-product" value={suma} onChange={ e => setSuma(e.target.value)} ></input>
+                    <button onClick={incrementCount}>
+                        Agregar al carrito
+                    </button>
+                    {/* stock = 5 */}
+                    <p>Stock Disponible: { Number(count) + Number(stock) } </p>
+                </div>
+        
+            );
+        }
+
+
     }
 
 
