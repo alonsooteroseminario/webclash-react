@@ -28,7 +28,7 @@ function ItemCount ( { stock, initial, onAdd } ) {
     if (carrito === 0) {
         return(
             <div>
-                <input></input>
+                <input disabled="disabled" ></input>
                 <button>
                     Agregar al carrito
                 </button>
@@ -43,7 +43,7 @@ function ItemCount ( { stock, initial, onAdd } ) {
     else if (carrito < 0) {
         return(
             <div>
-                <input></input>
+                <input disabled="disabled" ></input>
                 <button>
                     Agregar al carrito
                 </button>
