@@ -58,10 +58,10 @@ function ItemCount ( { stock, initial, onAdd } ) {
     else
     {
 
-        if ( suma > carrito - count ) {
+        if ( suma > carrito ) {
             return(
                 <div>
-                    <input className="form-product" type="number" name="form-product" value={suma} onChange={ e => setSuma(e.target.value)} ></input>
+                    <input className="form-product" type="number" name="form-product" value={carrito} onChange={ e => setSuma(e.target.value)} ></input>
                     <button>
                         Agregar al carrito
                     </button>
