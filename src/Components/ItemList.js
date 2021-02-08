@@ -39,13 +39,13 @@ function ItemList ({ items }) {
 
     return (
         <div className="container">
-        <div className="row">
-          <div className="col">
-              {users.map( el => 
-                    <Item id={el.id} title={el.title} price={el.price} pictureUrl={el.pictureUrl} />
-              )}
+          <div className="row">
+            <div className="col">
+                {users.map( el => 
+                      <Item id={el.id} title={el.title} price={el.price} pictureUrl={el.pictureUrl} />
+                )}
+            </div>
           </div>
-        </div>
       </div>
     )
 }
