@@ -20,3 +20,34 @@ code {
   margin: 0 10px 0 10px;
 }
 
+h1, h2 {
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  max-width: 60rem;
+  padding: 2rem 0 0;
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
+.item-image {
+  flex: 0 0 auto;
+}
+
+.item-details {
+  flex: 1 1 auto;
+  padding: 2rem 0 1rem 2rem;
+}
+
+.item-name {
+  font-size: 1.5rem;
+  padding: 0.25rem 0;
+}
+
+.item-price {
+  font-size: 1.25rem;
+  font-weight: normal;
+  padding: 0.25rem 0;
+}
