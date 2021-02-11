@@ -20,8 +20,17 @@ code {
   margin: 0 10px 0 10px;
 }
 
+.nav-item {
+  text-align: center;
+  display: flex;
+}
+
 h1, h2 {
   margin: 0;
+}
+
+.card-img-top {
+  width: 25%;
 }
 
 .item {

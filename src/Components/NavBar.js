@@ -4,7 +4,7 @@ import CartWidget from './CartWidget';
 const NavBar = () => {
   return (
     <div>
-        <ul className="nav nav-tabs justify-content-end">
+        <ul className="nav nav-tabs justify-content-center">
             <li className="nav-item">
                 <h4>Cart Webclash</h4>
             </li>
