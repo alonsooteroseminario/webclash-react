@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
+/* eslint-disable jsx-a11y/alt-text */
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
     return (

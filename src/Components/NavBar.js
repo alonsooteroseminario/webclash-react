@@ -6,7 +6,7 @@ const NavBar = () => {
     <div>
         <ul className="nav nav-tabs justify-content-center">
             <li className="nav-item">
-                <h4>Cart Webclash</h4>
+                <h4>Webclash Market Place</h4>
             </li>
             <li className="nav-item"> 
                 <CartWidget />
