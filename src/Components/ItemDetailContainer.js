@@ -33,7 +33,7 @@ const ItemDetailContainer = (props) => {
 
 
     return (
-        <div style={{ background: 'red' }}>
+        <div style={{ background: 'white' }}>
             <h3>{props.greeting}</h3>
             <ItemCount initial="0" stock="5" />
             <ItemDetail id={users.id} description={users.description} title={users.title} price={users.price} pictureUrl={users.pictureUrl} />

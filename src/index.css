@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
+.webclash__logo {
+  float: center;
+  margin: 0;
+  padding: 1em 2em;
+  font-size: 1.175em;
+  text-transform: uppercase;
+  color: rgb(255,255,255);
+}
+
 .shopping-cart {
   display: inline-block;
   background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
@@ -20,6 +29,13 @@ code {
   margin: 0 10px 0 10px;
 }
 
+.card-block {
+  padding-bottom: 10px;
+}
+
+.add-to-cart {
+  padding-bottom: 10px;
+}
 .nav-item {
   text-align: center;
   display: flex;

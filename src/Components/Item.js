@@ -5,16 +5,16 @@ function Item ({ id , title, price, pictureUrl }) {
 
     return (
         <div className="card" >
-            <img src={pictureUrl} className="card-img-top" alt="Card image cap" />
+            <img src={pictureUrl} className="card-img-top" alt="Card image cap" width="25%" height="25%" />
                 <div className="card-block" key={id} >
                     <h4 className="card-title">{`${title}: $${price}`}</h4>
                      <input className="add-to-cart btn btn-primary" type="submit" value="Agregar" />
                 </div>
-            <li>
               <Link to={'/item'} >
-                Ir al Detalle de Producto
+                <div className="add-to-cart">
+                   <input className="add-to-cart btn btn-primary" type="submit" value="Ir al Detalle de Producto" />
+                </div>
               </Link>
-            </li>
         </div>
     )
 }
