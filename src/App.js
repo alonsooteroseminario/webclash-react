@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/" >
             <Link to={'/'} >
-                <Home img="../../public/images/webclash-original.png" />    
+                <Home />    
             </Link>
           </Route>
           <Route exact path="/list">

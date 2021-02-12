@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.home-widget {
+  padding-right: 8px;
+}
+
 .webclash__logo {
   float: center;
   margin: 0;
