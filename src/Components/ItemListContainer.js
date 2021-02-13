@@ -7,7 +7,7 @@ const ItemListContainer = (props) => {
     return (
         <div style={{ background: 'white' }}>
             <h3>{props.greeting}</h3>
-            <ItemCount initial="0" stock="5" />
+            {/* <ItemCount initial="0" stock="5" /> */}
             <ItemList />
         </div>
     );

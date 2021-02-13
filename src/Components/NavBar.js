@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import CartWidget from './CartWidget';
 import HomeWidget from './HomeWidget';
+import logo from '../Images/webclash-original.png';
 
 const NavBar = () => {
   return (
@@ -15,9 +17,7 @@ const NavBar = () => {
                 <h4>Market Place</h4>
             </li>
             <li className="nav-item">
-              <a href={'/list'}>
                 <CartWidget />
-              </a>
             </li>
         </ul>
     </div>

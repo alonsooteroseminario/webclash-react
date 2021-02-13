@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Item from './Item';
 
 function ItemList ({ items }) {
+
+
 
     const Resultado = new Promise( (resolve, reject) => {
         setTimeout( () => {
@@ -34,7 +37,13 @@ function ItemList ({ items }) {
         console.log(e);
     })
 
+
+
+
     const [users, setUsers] = useState([]);
+
+
+
 
 
     return (

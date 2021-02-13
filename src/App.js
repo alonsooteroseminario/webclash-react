@@ -6,24 +6,21 @@ import ItemDetailContainer from './Components/ItemDetailContainer';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Home from './Components/Home';
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <BrowserRouter>
+        <NavBar />
         <Switch>
-          <Route exact path="/" >
-            <Link to={'/'} >
-                <Home />    
-            </Link>
-          </Route>
-          <Route exact path="/list">
+          <Route exact path="/">
             <ItemListContainer greeting="Lista de productos" />
           </Route>
-          <Route exact path="/item">
+          <Route exact path="/categoria/:ID">
+            <ItemListContainer greeting="Lista de productos" />
+          </Route>
+          <Route exact path="/item/:ID">
             <ItemDetailContainer greeting="Detalle de producto" />
           </Route>
         </Switch>

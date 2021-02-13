@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-  import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import ItemCount from './ItemCount';
 
 function Item ({ id , title, price, pictureUrl }) {
 
@@ -8,9 +9,11 @@ function Item ({ id , title, price, pictureUrl }) {
             <img src={pictureUrl} className="card-img-top" alt="Card image cap" width="25%" height="25%" />
                 <div className="card-block" key={id} >
                     <h4 className="card-title">{`${title}: $${price}`}</h4>
-                     <input className="add-to-cart btn btn-primary" type="submit" value="Agregar" />
+                     {/* <input className="add-to-cart btn btn-primary" type="submit" value="Agregar" /> */}
+                     <ItemCount initial="0" stock="5" />
                 </div>
-              <Link to={'/item'} >
+                {/* este tiene que ser dinamico */}
+              <Link to={`/item/${id}`} >
                 <div className="add-to-cart">
                    <input className="add-to-cart btn btn-primary" type="submit" value="Ir al Detalle de Producto" />
                 </div>
