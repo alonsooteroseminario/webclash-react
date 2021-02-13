@@ -35,7 +35,13 @@ const ItemDetailContainer = (props) => {
                         description: "dsfdfdfsdsfsdfsdf",
                       },]
                 )
-                
+                let productosAMostrar = users.map( le => {
+                    if(le.id.toString() === ID){
+                      return getUser(le)
+                    }else{
+                      return null;
+                    }
+                  })
                 
             }, 3000 )
         })
@@ -76,8 +82,6 @@ const ItemDetailContainer = (props) => {
             <h3>{props.greeting}</h3>
             <ItemCount initial="0" stock="5" />
             <ItemDetail id={user.id} description={user.description} title={user.title} price={user.price} pictureUrl={user.pictureUrl} />
-            {ID}
-            {user.id}
         </div>
         )
 
