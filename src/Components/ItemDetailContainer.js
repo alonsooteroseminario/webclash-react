@@ -13,34 +13,65 @@ const ItemDetailContainer = (props) => {
         return new Promise(resolve => {
             setTimeout( () => {
                 resolve('I did something')
-                setUsers(
-                    [{
-                        id: 1,
-                        title: "naranja",
-                        price: 20,
-                        pictureUrl: "http://www.azspagirls.com/files/2010/09/orange.jpg",
-                        description: "fsdfsfsd",
-                      },
-                      {
-                        id: 2,
-                        title: "platano",
-                        price: 32,
-                        pictureUrl: "http://images.all-free-download.com/images/graphicthumb/vector_illustration_of_ripe_bananas_567893.jpg",
-                        description: "dsdffsdfsfsdf",
-                      },      {
-                        id: 3,
-                        title: "limón",
-                        price: 51,
-                        pictureUrl: "https://3.imimg.com/data3/IC/JO/MY-9839190/organic-lemon-250x250.jpg",
-                        description: "dsfdfdfsdsfsdfsdf",
-                      },]
+                setUsers([              
+                    {
+                      categoriaId: "frutas",
+                      id: 1,
+                      title: "naranja",
+                      price: 20,
+                      pictureUrl: "http://www.azspagirls.com/files/2010/09/orange.jpg",
+                      description: "fsdfsfsd",
+                    },
+                    {
+                      categoriaId: "frutas",
+                      id: 2,
+                      title: "platano",
+                      price: 32,
+                      pictureUrl: "http://images.all-free-download.com/images/graphicthumb/vector_illustration_of_ripe_bananas_567893.jpg",
+                      description: "fsdfsfsd",
+                    },      {
+                      categoriaId: "frutas",
+                      id: 3,
+                      title: "limón",
+                      price: 51,
+                      pictureUrl: "https://3.imimg.com/data3/IC/JO/MY-9839190/organic-lemon-250x250.jpg",
+                      description: "fsdfsfsd",
+                    },
+                    {
+                      categoriaId: "zapatillas",
+                      id: 4,
+                      title: "Zapas Nike",
+                      price: 20,
+                      pictureUrl: "http://www.azspagirls.com/files/2010/09/orange.jpg",
+                      description: "fsdfsfsd",
+                    },
+                    {
+                      categoriaId: "zapatillas",
+                      id: 5,
+                      title: "Zapas Adidas",
+                      price: 32,
+                      pictureUrl: "http://images.all-free-download.com/images/graphicthumb/vector_illustration_of_ripe_bananas_567893.jpg",
+                      description: "fsdfsfsd",
+                    },      
+                    {
+                      categoriaId: "zapatillas",
+                      id: 6,
+                      title: "Zapas Adidas limón",
+                      price: 51,
+                      pictureUrl: "https://3.imimg.com/data3/IC/JO/MY-9839190/organic-lemon-250x250.jpg",
+                      description: "fsdfsfsd",
+                    },]
                 )
+                // eslint-disable-next-line no-unused-vars
                 let productosAMostrar = users.map( le => {
-                    if(le.id.toString() === ID){
-                      return getUser(le)
-                    }else{
-                      return null;
-                    }
+                  if((le.id.toString() === ID) && (le.categoriaId.toString() === "frutas")){
+                    return getUser(le)
+                  }else if ((le.id.toString() === ID) && (le.categoriaId.toString() === "zapatillas")) {
+                    return getUser(le)
+                  }
+                  else{
+                    return null;
+                  }
                   })
                 
             }, 3000 )
@@ -62,9 +93,12 @@ const ItemDetailContainer = (props) => {
     useEffect( () => {
 
       let productosAMostrar = users.map( le => {
-        if(le.id.toString() === ID){
+        if((le.id.toString() === ID) && (le.categoriaId.toString() === "frutas")){
           return getUser(le)
-        }else{
+        }else if ((le.id.toString() === ID) && (le.categoriaId.toString() === "zapatillas")) {
+          return getUser(le)
+        }
+        else{
           return null;
         }
       })
@@ -74,6 +108,7 @@ const ItemDetailContainer = (props) => {
         
       }
       
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ID]);
 
 
