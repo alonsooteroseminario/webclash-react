@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Item from './Item';
 import { useParams } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ function ItemList ({ home }) {
 
 
     const { categoriaID } = useParams();
+    const { ID } = useParams();
 
     const Resultado = new Promise( (resolve, reject) => {
         setTimeout( () => {
@@ -72,6 +73,27 @@ function ItemList ({ home }) {
     const [users, setUsers] = useState([]);
     const [Home] = useState({home});
     console.log(Home.home);
+
+    useEffect( () => {
+
+      let productosAMostrar = users.map( le => {
+        if((le.id.toString() === ID) && (le.categoriaId.toString() === "frutas")){
+          return setUsers(le)
+        }else if ((le.id.toString() === ID) && (le.categoriaId.toString() === "zapatillas")) {
+          return setUsers(le)
+        }
+        else{
+          return null;
+        }
+      })
+
+      console.log(productosAMostrar)
+      return () => {
+        
+      }
+      
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ID]);
 
     return (
         <div className="container">
