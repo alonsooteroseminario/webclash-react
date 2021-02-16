@@ -1,9 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
+import ItemCount from './ItemCount';
+
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
+
+
+  const onAdd = (quantityToAdd) => {
+    console.log(quantityToAdd);
+  }
 
     return (
       <div className={'item item-' + id} key={id} >
         <img src={pictureUrl} />
+        <ItemCount />
           <div className='item-details'>
             <h1 className='item-name'>
               {title}
@@ -15,6 +23,9 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
               {description}
             </p>
           </div>
+          <button>
+            Terminar tu compra
+          </button>
       </div>
     )
 }
