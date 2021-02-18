@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 
 /* eslint-disable jsx-a11y/alt-text */
+import ItemCount from './ItemCount';
+
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
 
