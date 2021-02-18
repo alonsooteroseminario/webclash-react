@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function ItemCount ( { stock, initial, onAdd } ) {
+function ItemCount ( { stock, initial } ) {
 
     const [carrito, setCarrito] = useState( Number(stock) );
 

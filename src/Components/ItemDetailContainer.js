@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ItemCount from './ItemCount';
 import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = (props) => {
@@ -115,7 +114,6 @@ const ItemDetailContainer = (props) => {
         return (
         <div style={{ background: 'white' }}>
             <h3>{props.greeting}</h3>
-            <ItemCount initial="0" stock="5" />
             <ItemDetail id={user.id} description={user.description} title={user.title} price={user.price} pictureUrl={user.pictureUrl} />
         </div>
         )
