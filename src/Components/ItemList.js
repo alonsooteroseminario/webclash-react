@@ -75,6 +75,8 @@ function ItemList ({ home }) {
     console.log(Home.home);
 
     useEffect( () => {
+      
+      // aqui va el registro de los eventos SIEMPRE
 
       let productosAMostrar = users.map( le => {
         if((le.id.toString() === ID) && (le.categoriaId.toString() === "frutas")){
@@ -90,6 +92,8 @@ function ItemList ({ home }) {
       console.log(productosAMostrar)
       return () => {
         
+        // aqui se terminan o desregristran los eventos SIEMPRE
+
       }
       
     // eslint-disable-next-line react-hooks/exhaustive-deps

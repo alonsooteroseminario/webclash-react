@@ -15,7 +15,9 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
       
       console.log(`Agregar al cart el item: ${id} con cantidad: ${quantity}`);
       setQuantity(quantity);
-
+      // console.log(document.getElementById("input1").value);
+      // quantity.preventDefault();
+      // quantity.stopPropagation();
     }
 
 
@@ -37,7 +39,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 <ItemCount initial="0" stock="5" />
               </p>
               <p>
-                <button onClick={ e => onAdd()}>
+                <button onClick={ () => onAdd(document.getElementById("input1").value)} >
                   Comprar
                 </button>
               </p>
@@ -66,7 +68,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 </button>
               </Link>
               <p>
-                  Se comprarán {quantity} items
+                  Se comprarán {Number(quantity)} items
                 </p>
               </p>
             </div>
