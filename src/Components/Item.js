@@ -18,6 +18,9 @@ function Item ({ id , title, price, pictureUrl }) {
                    <input className="add-to-cart btn btn-primary" type="submit" value="Ir al Detalle de Producto" />
                 </div>
               </Link>
+              {/* <button onClick={ () => { setCart([...CaretPosition, [{items:{ id: 2323, name: 'toto' }, quantity:2}]]) }}>
+
+              </button> */}
         </div>
     )
 }

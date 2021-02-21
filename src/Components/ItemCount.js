@@ -16,11 +16,6 @@ function ItemCount ( { stock, initial, onAdd } ) {
 
     // }
 
-    // const onAdd = (suma) => {
-    //     setCount(count - suma);
-    //     setCarrito(carrito - suma);
-    // }
-
     console.log('Stock : ' + carrito);
     console.log('Agregados : ' + suma);
     console.log('Count : ' + count);
