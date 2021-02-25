@@ -2,7 +2,7 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
-import { CartContext, CartProvider } from '../context/CartContext';
+import { CartContext } from '../context/CartContext';
 
 
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
@@ -10,7 +10,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
     const [quantity, setQuantity] = useState(0);
     // useContext()
-    const {cart, setCart} = useContext(CartContext);
+    const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
     console.log(cart);
   
     function onAdd(quantity) {
@@ -25,7 +25,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
       setCart([
         ...cart,
         [{ 
-          items:{ 
+          item:{ 
             id:{id},
             description:{description}, 
             title:{title},
@@ -38,6 +38,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
       console.log(cart);
     }
 
+    
 
     if (quantity === 0) {
       return (
@@ -61,6 +62,27 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 <p>
                   <button onClick={ () => {onAdd(document.getElementById("input1").value)} } >
                     Comprar
+                  </button>
+                </p>
+                <p>
+                  <button onClick={ () => {addItem({
+                                id:{id},
+                                description:{description}, 
+                                title:{title},
+                                price:{price},
+                                pictureUrl:{pictureUrl},
+                  }, document.getElementById("input1").value)} } >
+                    Agregar al Carrito
+                  </button>
+                </p>
+                <p>
+                  <button onClick={ () => {removeItem({id})} } >
+                    Borrar del Carrito
+                  </button>
+                </p>
+                <p>
+                  <button onClick={ () => {clear()} } >
+                    Borrar Todo
                   </button>
                 </p>
               </div>

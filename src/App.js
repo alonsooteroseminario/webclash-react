@@ -3,9 +3,9 @@ import './App.css';
 import NavBar from './Components/NavBar';
 import ItemListContainer from './Components/ItemListContainer';
 import ItemDetailContainer from './Components/ItemDetailContainer';
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { CartContext, CartProvider } from './context/CartContext';
+import { CartProvider } from './context/CartContext';
 
 
 function App() {
