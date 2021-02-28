@@ -9,6 +9,9 @@ export const CartProvider = ({ children }) => {
     function addItem(item, cantidad) {
 
         if (isInCart(item.id)) {
+            var index_0 = cart.indexOf(item);
+            cart.slice(index_0,1)
+            setCart([...cart, [{item, cantidad}] ]);
             return;
         }else{
             setCart([...cart, [{item, cantidad}] ]);
@@ -46,24 +49,13 @@ export const CartProvider = ({ children }) => {
         return cart;
     }
 
-    function existe(nuevo_id) {
 
-        for (let index = 0; index < cart.length; index++) {
-            const element = cart[index];
-            if (element.item.id === nuevo_id) {
-                return true;
-            }
-            return;
-        }
+    function getFromCart(item) {
+        return cart.find(obj => obj.item.id === item.id)
     }
-
-
-    // function getFromCart(item) {
-    //     return cart.find(obj => obj.item === item)
-    // }
     
     function isInCart(nuevo_id) {
-        if (existe(nuevo_id)) {
+        if (getFromCart(nuevo_id)) {
             return true;
         }else {
             return false;
