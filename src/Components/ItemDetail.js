@@ -9,89 +9,135 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
 
     const [quantity, setQuantity] = useState(0);
+    const [cantidad, setCantidad] = useState(0);
     // useContext()
+    // eslint-disable-next-line no-unused-vars
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
     console.log(cart);
   
-    function onAdd(quantity) {
-      
-      console.log(`Agregar al cart el item: ${id} con cantidad: ${quantity}`);
-      setQuantity(quantity);
-      // console.log(document.getElementById("input1").value);
-      // quantity.preventDefault();
-      // quantity.stopPropagation();
+    function onAdd(cantidad) {
+    
+      setQuantity(cantidad);
+      setCantidad(cantidad);
 
       // guardar en el CartContext el objeto { item: {}, quantity}
-      setCart([
-        ...cart,
+      setCart([...cart,
         [{ 
+
           item:{ 
-            id:{id},
-            description:{description}, 
-            title:{title},
-            price:{price},
-            pictureUrl:{pictureUrl},
-          }, 
-          quantity:{quantity},
-        }],
+                id:{id},
+                description:{description}, 
+                title:{title},
+                price:{price},
+                pictureUrl:{pictureUrl},
+                }, 
+
+          cantidad:cantidad,
+
+        },]
       ]);
-      console.log(cart);
+
     }
 
+    function clearQuantity() {
+      setQuantity(0);
+      setCantidad(0);
+    }
+
+    function addToCart(cantidad) {
+      
+      setCantidad(cantidad);
+      addItem({ 
+                id:{id},
+                description:{description}, 
+                title:{title},
+                price:{price},
+                pictureUrl:{pictureUrl},
+              }, cantidad)
+
+    }
     
 
     if (quantity === 0) {
       return (
-      //  <CartProvider>
+
           <div className={'item item-' + id} key={id} >
             
             <img src={pictureUrl} />
               <div className='item-details'>
+
                 <h1 className='item-name'>
                   {title}
                 </h1>
+
                 <h2 className='item-price'>
                   ${Number(price)}
                 </h2>
+
                 <p className='item-desc'>
                   {description}
                 </p>
+
                 <p className="item-count">
                   <ItemCount initial="0" stock="5" />
                 </p>
+
                 <p>
-                  <button onClick={ () => {onAdd(document.getElementById("input1").value)} } >
+                  <button onClick={ () => {
+
+                    onAdd(document.getElementById("input1").value);
+
+                    
+                    } } >
                     Comprar
                   </button>
                 </p>
+
                 <p>
-                  <button onClick={ () => {addItem({
-                                id:{id},
-                                description:{description}, 
-                                title:{title},
-                                price:{price},
-                                pictureUrl:{pictureUrl},
-                  }, document.getElementById("input1").value)} } >
+                  <button onClick={ () => { 
+
+                    addToCart(document.getElementById("input1").value);
+
+                    } } >
                     Agregar al Carrito
                   </button>
                 </p>
+
                 <p>
-                  <button onClick={ () => {removeItem({id})} } >
+                El carrito tiene {Number(cart.length)} items y se va a agregar
+                al carrito el nuevo item: {title} con cantidad de: {cantidad}
+                </p>
+
+                <p>
+                  <button onClick={ () => {
+                    
+                    removeItem(
+                      { 
+                        id
+                      }
+                    );
+                  
+                  } } >
                     Borrar del Carrito
                   </button>
                 </p>
+
                 <p>
-                  <button onClick={ () => {clear()} } >
+                  <button onClick={ () => {
+                    clear();
+                    clearQuantity();
+                                         } } >
                     Borrar Todo
                   </button>
                 </p>
+
               </div>
           </div>
-        // </CartProvider>
+
       )
     }else {
       return (
-      // <CartProvider>
+
         <div className={'item item-' + id} key={id} >
           <img src={pictureUrl} />
             <div className='item-details'>
@@ -113,10 +159,37 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 <p>
                   Se comprarán {Number(quantity)} items
                 </p>
+                <p>
+                El carrito tiene {Number(cart.length)} items y se va a agregar
+                al carrito el nuevo item: {title} con cantidad de: {cantidad}
+                </p>
+
+                <p>
+                  <button onClick={ () => {
+                    
+                    removeItem(
+                      { 
+                        id
+                      }
+                    );
+                  
+                  } } >
+                    Borrar del Carrito
+                  </button>
+                </p>
+
+                <p>
+                <button onClick={ () => {
+                    clear();
+                    clearQuantity();
+                                         } } >
+                    Borrar Todo
+                  </button>
+                </p>
               </p>
             </div>
         </div>
-      // </CartProvider>
+
 
       )
     }
