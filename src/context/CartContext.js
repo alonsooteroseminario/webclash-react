@@ -9,50 +9,88 @@ export const CartProvider = ({ children, defaultCart }) => {
     function addItem(item, cantidad) {
 
         if (isInCart(item)) {
-            var index_0 = cart.indexOf({item, cantidad});
-            cart.slice(index_0,1)
+
+
+            cart.filter(obj => obj.item !== item);
             setCart([...cart, [{item, cantidad}] ]);
+
+
+            // for (let index = 0; index < cart.length; index++) {
+            //     const element = cart[index];
+            //     if (element.item === {item}) {
+            //         cart.splice(index, 1);
+            //         setCart([...cart, [{item, cantidad}] ]);
+            //     }
+            // }
+
+            // var index_0 = cart.indexOf({item, cantidad});
+            // cart.slice(index_0,1,{item, cantidad});
+
             console.log(cart);
-            return;
+            return cart;
         }else{
             setCart([...cart, [{item, cantidad}] ]);
-            console.log(cart);
+            // console.log(cart);
         }
         
     }
 
-    function removeItem(itemId, cantidad) {
+    function removeItem(itemId, description, title, price, pictureUrl, cantidad ) {
         
         if (cart.length !== 0) {
-            var i = 0;
-            while (i<cart.length) {
-                // eslint-disable-next-line no-self-compare
 
-                if(cart[i].item === {itemId, cantidad}) {
-                    cart.splice(i, 1);
-                }else {
-                    ++i;
-                }
+            const item = {
+                id:{itemId},
+                description:{description},
+                title:{title},
+                price:{price},
+                pictureUrl:{pictureUrl},
             }
+
+            cart.filter( obj => obj[item].id !== itemId);
+
+            // for (let index = 0; index < cart.length; index++) {
+            //     const element = cart[index];
+            //     if(element.item === {item:{
+            //                                 id:{itemId},
+            //                                 description:{description}, 
+            //                                 title:{title},
+            //                                 price:{price},
+            //                                 pictureUrl:{pictureUrl},
+            //                             }
+            //                         }) {
+            //         cart.splice(index, 1);
+            //     }
+                
+            // }
+
+            // var i = 0;
+            // while (i<cart.length) {
+            //     // eslint-disable-next-line no-self-compare
+
+            //     if(cart[i].item === {item:{id:itemId}, cantidad}) {
+            //         cart.splice(i, 1);
+            //     }else {
+            //         ++i;
+            //     }
+            // }
             console.log(cart);
             return cart;
             
-        }else {
-
         }
         
     }
     
     function clear() {
-        var i = 0;
-        while (i<cart.length) {
-            // eslint-disable-next-line no-self-compare
-            if(cart[i] === cart[i]) {
-                cart.splice(i, 1);
-            }else {
-                ++i;
-            }
-        }
+        // var i = 0;
+        // while (i<cart.length) {
+        //     // eslint-disable-next-line no-self-compare
+        //     if(cart[i] === cart[i]) {
+        //         cart.splice(i, 1);
+        //     }else {
+        //         ++i;
+        //     }
+        // }
         setCart([]);
         console.log(cart);
         return cart;
@@ -64,11 +102,14 @@ export const CartProvider = ({ children, defaultCart }) => {
     }
     
     function isInCart(item) {
-        if (getFromCart(item)) {
-            return true;
-        }else {
-            return false;
-        }
+        return item === undefined ? undefined : getFromCart(item)!== undefined
+
+
+        // if (getFromCart(item)) {
+        //     return true;
+        // }else {
+        //     return false;
+        // }
     }
 
     return (
