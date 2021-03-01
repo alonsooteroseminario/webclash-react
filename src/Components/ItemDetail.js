@@ -20,19 +20,21 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
       setQuantity(cantidad);
       setCantidad(cantidad);
 
+
+      debugger;
       // guardar en el CartContext el objeto { item: {}, quantity}
       setCart([...cart,
         [{ 
 
           item:{ 
-                id:{id},
-                description:{description}, 
-                title:{title},
-                price:{price},
-                pictureUrl:{pictureUrl},
+                id,
+                description, 
+                title,
+                price,
+                pictureUrl
                 }, 
 
-          cantidad:cantidad,
+          cantidad,
 
         },]
       ]);
@@ -48,11 +50,11 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
       
       setCantidad(cantidad);
       addItem({ 
-                id:{id},
-                description:{description}, 
-                title:{title},
-                price:{price},
-                pictureUrl:{pictureUrl},
+                id,
+                description, 
+                title,
+                price,
+                pictureUrl
               }, cantidad)
 
     }
@@ -60,7 +62,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
     function removeToCart(cantidad) {
 
       setCantidad(cantidad);
-      removeItem({id}, cantidad);
+      removeItem(id, cantidad);
 
     }
     
