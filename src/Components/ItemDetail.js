@@ -56,6 +56,13 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
               }, cantidad)
 
     }
+
+    function removeToCart(cantidad) {
+
+      setCantidad(cantidad);
+      removeItem({id}, cantidad);
+
+    }
     
 
     if (quantity === 0) {
@@ -111,11 +118,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 <p>
                   <button onClick={ () => {
                     
-                    removeItem(
-                      { 
-                        id
-                      }
-                    );
+                    removeToCart( cantidad );
                   
                   } } >
                     Borrar del Carrito
@@ -167,11 +170,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 <p>
                   <button onClick={ () => {
                     
-                    removeItem(
-                      { 
-                        id
-                      }
-                    );
+                    removeToCart( cantidad );
                   
                   } } >
                     Borrar del Carrito

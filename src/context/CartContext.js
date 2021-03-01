@@ -2,16 +2,17 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, defaultCart }) => {
     //Cart es un array con cualquier tipo de elemento: {item:{}, cantidad:0}
     const [cart, setCart] = useState([])
 
     function addItem(item, cantidad) {
 
-        if (isInCart(item.id)) {
-            var index_0 = cart.indexOf(item);
+        if (isInCart(item)) {
+            var index_0 = cart.indexOf({item, cantidad});
             cart.slice(index_0,1)
             setCart([...cart, [{item, cantidad}] ]);
+            console.log(cart);
             return;
         }else{
             setCart([...cart, [{item, cantidad}] ]);
@@ -20,18 +21,26 @@ export const CartProvider = ({ children }) => {
         
     }
 
-    function removeItem(itemId) {
-        var i = 0;
-        while (i<cart.length) {
-            // eslint-disable-next-line no-self-compare
-            if(cart[i].item.id === itemId) {
-                cart.splice(i, 1);
-            }else {
-                ++i;
+    function removeItem(itemId, cantidad) {
+        
+        if (cart.length !== 0) {
+            var i = 0;
+            while (i<cart.length) {
+                // eslint-disable-next-line no-self-compare
+
+                if(cart[i].item === {itemId, cantidad}) {
+                    cart.splice(i, 1);
+                }else {
+                    ++i;
+                }
             }
+            console.log(cart);
+            return cart;
+            
+        }else {
+
         }
-        console.log(cart);
-        return cart;
+        
     }
     
     function clear() {
@@ -51,11 +60,11 @@ export const CartProvider = ({ children }) => {
 
 
     function getFromCart(item) {
-        return cart.find(obj => obj.item.id === item.id)
+        return cart.find(obj => obj.item === item)
     }
     
-    function isInCart(nuevo_id) {
-        if (getFromCart(nuevo_id)) {
+    function isInCart(item) {
+        if (getFromCart(item)) {
             return true;
         }else {
             return false;
