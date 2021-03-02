@@ -29,7 +29,7 @@ export const CartProvider = ({ children, defaultCart }) => {
 
             debugger;
 
-            cart.filter( obj => obj.item.id !== itemId);
+            cart.filter( obj => obj.item !== itemId);
 
             console.log(cart);
             return cart;
@@ -48,7 +48,7 @@ export const CartProvider = ({ children, defaultCart }) => {
 
     function getFromCart(itemId) {
         debugger;
-        return cart.find(obj => obj.item.id === itemId)
+        return cart.find(obj => obj.item === itemId)
     }
     
     function isInCart(itemId) {
