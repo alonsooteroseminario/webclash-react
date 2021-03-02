@@ -11,7 +11,7 @@ export const CartProvider = ({ children, defaultCart }) => {
         if (isInCart(item.id)) {
 
 
-            cart.filter(obj => obj.item !== item);
+            cart.filter(obj => Object.values(obj)[0].id !== item.id);
             setCart([...cart, [{item, cantidad}] ]);
 
             console.log(cart);
@@ -29,7 +29,7 @@ export const CartProvider = ({ children, defaultCart }) => {
 
             debugger;
 
-            cart.filter( obj => obj.item !== itemId);
+            cart.filter( obj => Object.values(obj)[0] !== itemId);
 
             console.log(cart);
             return cart;
@@ -48,7 +48,7 @@ export const CartProvider = ({ children, defaultCart }) => {
 
     function getFromCart(itemId) {
         debugger;
-        return cart.find(obj => obj.item === itemId)
+        return cart.find(obj => Object.values(obj)[0].id === itemId)
     }
     
     function isInCart(itemId) {

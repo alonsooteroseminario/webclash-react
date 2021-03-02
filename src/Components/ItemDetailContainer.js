@@ -76,6 +76,8 @@ const ItemDetailContainer = (props) => {
             }, 3000 )
         })
 
+        
+
 
     }
     

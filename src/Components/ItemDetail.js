@@ -31,7 +31,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 description, 
                 title,
                 price,
-                pictureUrl,
+                pictureUrl
                 }, 
 
           cantidad:cantidad,
@@ -54,7 +54,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 description, 
                 title,
                 price,
-                pictureUrl,
+                pictureUrl
               }, cantidad)
 
     }
