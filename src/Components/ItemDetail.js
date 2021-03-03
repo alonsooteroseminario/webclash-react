@@ -10,6 +10,8 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
     const [quantity, setQuantity] = useState(0);
     const [cantidad, setCantidad] = useState(0);
+
+
     // useContext()
     // eslint-disable-next-line no-unused-vars
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
@@ -34,7 +36,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 pictureUrl
                 }, 
 
-          cantidad:cantidad,
+          quant:cantidad,
 
         },]
       ]);
@@ -49,13 +51,13 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
     function addToCart(cantidad) {
       
       setCantidad(cantidad);
-      addItem({ 
+      addItem(
                 id,
                 description, 
                 title,
                 price,
-                pictureUrl
-              }, cantidad)
+                pictureUrl,     
+                cantidad)
 
     }
 

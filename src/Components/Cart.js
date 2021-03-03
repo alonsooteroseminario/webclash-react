@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import React from 'react';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,8 +9,10 @@ const Cart = (props) => {
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
 
 
+    //cart.length*cantidad
+
     return (
-        <div style={{ background: 'white' }}>
+        <div>
                     <section>
 
                     
@@ -44,9 +47,9 @@ const Cart = (props) => {
                                                                             </Link>
                                                                             <div className="media-body">
                                                                             <p>
-                                                                                {cart.indexOf(el.item)}
                                                                                 {el.item}
-                                                                                {cart.length}
+                                                                              
+                                                                               
                                                                             </p>
                                                                             </div>
                                                                         </div>
@@ -54,26 +57,26 @@ const Cart = (props) => {
 
                                                                     <td>
                                                                         <h5 className="mb-0">
-                                                                            {el.item}
+                                                                           
                                                                         </h5>
                                                                     </td>
 
                                                                     <td>
-                                                                        {el.item}
+                                                                       
                                                                     </td>
 
                                                                     <td>
                                                                         <h5 className="mb-0">
-                                                                            {el.item}
+                                                                            
                                                                         </h5>
                                                                     </td>
 
                                                                     <td>
-                                                                        {el.item}
+                                                                       
                                                                     </td>
 
                                                                     <td>
-                                                                        <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => removeItem(el.item)} ><i className="ti-close" />
+                                                                        <Link type="submit" className="btn btn-primary btn-sm"  ><i className="ti-close" />
                                                                         X
                                                                         </Link>
                                                                     </td>
@@ -81,7 +84,7 @@ const Cart = (props) => {
                                                                     <td>
                                                                         <div className="d-flex justify-content-center align-items-center">
                                                                         
-                                                                            <input className="form-product" type="number" name="form-product" value={Number(el.cantidad)} />
+                                                                            <input className="form-product" type="number" name="form-product" />
 
                                                                         </div>
                                                                     </td>
@@ -115,16 +118,22 @@ const Cart = (props) => {
                                                 <div className="col-md-6">
                                                 <span className="text-black">Subtotal</span>
                                                 </div>
+
                                                 <div className="col-md-6 text-right">
-                                                <strong className="text-black"> 1000 </strong>
-                                                </div>
+                                                        <strong className="text-black">  </strong>
+                                                    </div>
+
                                             </div>
                                             <div className="row mb-5">
                                                 <div className="col-md-6">
                                                 <span className="text-black">Total</span>
                                                 </div>
                                                 <div className="col-md-6 text-right">
-                                                <strong className="text-black"> 1000000 </strong>
+                                                    <strong className="text-black"> 
+
+                                                   
+                                                    
+                                                    </strong>
                                                 </div>
                                             </div>
                                             <div className="row">

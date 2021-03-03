@@ -4,20 +4,29 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children, defaultCart }) => {
     //Cart es un array con cualquier tipo de elemento: {item:{}, cantidad:0}
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
 
-    function addItem(item, cantidad) {
+    function addItem( id, description, title, price, pictureUrl, cantidad) {
 
-        if (isInCart(item.id)) {
+        const objeto = {item:{
+                                id,
+                                description,
+                                title,
+                                price,
+                                pictureUrl
+                            }, quant:cantidad
+                        };
+
+        if (isInCart(id)) {
 
 
-            cart.filter(obj => Object.values(obj)[0].id !== item.id);
-            setCart([...cart, [{item, cantidad}] ]);
+            cart.filter(obj => obj.item.id !== id);
+            setCart([...cart, objeto ]);
 
             console.log(cart);
             return cart;
         }else{
-            setCart([...cart, [{item, cantidad}] ]);
+            setCart([...cart, objeto ]);
             // console.log(cart);
         }
         
@@ -29,7 +38,7 @@ export const CartProvider = ({ children, defaultCart }) => {
 
             debugger;
 
-            cart.filter( obj => Object.values(obj)[0] !== itemId);
+            cart.filter( obj => obj.item.id !== itemId);
 
             console.log(cart);
             return cart;
@@ -48,7 +57,7 @@ export const CartProvider = ({ children, defaultCart }) => {
 
     function getFromCart(itemId) {
         debugger;
-        return cart.find(obj => Object.values(obj)[0].id === itemId)
+        return cart.find(obj => obj.item.id === itemId)
     }
     
     function isInCart(itemId) {
