@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import { CartContext } from '../context/CartContext';
+import { CartProvider } from '../context/CartContext';
 
 
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
@@ -64,14 +65,14 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
     function removeToCart(cantidad) {
 
       setCantidad(cantidad);
-      removeItem(id, cantidad);
+      removeItem(id);
 
     }
     
 
     if (quantity === 0) {
       return (
-
+        <CartProvider>
           <div className={'item item-' + id} key={id} >
             
             <img src={pictureUrl} />
@@ -140,11 +141,11 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
               </div>
           </div>
-
+        </CartProvider>
       )
     }else {
       return (
-
+      <CartProvider>
         <div className={'item item-' + id} key={id} >
           <img src={pictureUrl} />
             <div className='item-details'>
@@ -192,7 +193,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
               </p>
             </div>
         </div>
-
+      </CartProvider>
 
       )
     }
