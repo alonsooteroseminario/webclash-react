@@ -16,7 +16,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
     // useContext()
     // eslint-disable-next-line no-unused-vars
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
-    console.log(cart);
+    // console.log(cart);
   
     function onAdd(cantidad) {
     

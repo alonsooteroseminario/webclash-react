@@ -22,7 +22,7 @@ export const CartProvider = ({ children, defaultCart }) => {
             const result = cart.filter( obj => Object.values(obj.item.id).join('') !== id)
             setCart([...result, objeto ]);
 
-            console.log(cart);
+            // console.log(cart);
             return cart;
         }else{
             setCart([...cart, objeto ]);
@@ -40,7 +40,7 @@ export const CartProvider = ({ children, defaultCart }) => {
             const result = cart.filter( obj => Object.values(obj.item.id).join('') !== itemId)
             setCart(result);
 
-            console.log(cart);
+            // console.log(cart);
             return cart;
             
         }
@@ -50,7 +50,7 @@ export const CartProvider = ({ children, defaultCart }) => {
     function clear() {
 
         setCart([]);
-        console.log(cart);
+        // console.log(cart);
         return cart;
     }
 

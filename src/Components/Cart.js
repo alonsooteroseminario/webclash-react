@@ -7,7 +7,12 @@ import { CartProvider } from '../context/CartContext';
 
 const Cart = (props) => {
 
-    const {cart, setCart, addItem, removeItem} = useContext(CartContext);
+    const {cart, setCart, removeItem} = useContext(CartContext);
+    console.log(cart);
+
+    // const totalFinal = cart.reduce( (prev, cur) => {
+    //     return prev + (Number(cur.quant)*Object.values(cur.item.price))
+    // }, 0)
 
     //cart.length*cantidad
     
@@ -17,7 +22,15 @@ const Cart = (props) => {
     // for (let re in result) {
     //     alert(Object.values(re.item.id).join(''));
     // }
-    setCart(cart);
+
+
+    // alert(cart.length);
+
+    // alert(Object.values(el.item.id).join(''))
+    // alert(Object.values(el.item.description).join(''))
+    // const result_id = cart.filter( obj => Object.values(obj.item.id).join('').length > 0)
+    // alert(result_id.length)
+    // alert(result_id)
 
     return (
         <CartProvider>
@@ -45,7 +58,10 @@ const Cart = (props) => {
                                                     </thead>
                                                     <tbody>
 
-                                                        {cart.map( el => {
+                                                        {
+                                                        cart.map( (el) => {
+
+                                                            
                                     
                                                             return(
                                                                     <tr>
@@ -57,8 +73,9 @@ const Cart = (props) => {
                                                                                 <div className="media-body">
                                                                                 <p>
                                                                                     
-                                                                                {/* {Object.values(el.item.id).join('')} */}
-                                                                                    
+                                                                          ${Number(cart.indexOf(el))} 
+                                                                         
+
                                                                                 </p>
                                                                                 </div>
                                                                             </div>
@@ -85,7 +102,7 @@ const Cart = (props) => {
                                                                         </td>
 
                                                                         <td>
-                                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => {removeItem(Object.values(el.item.id).join(''))} }  ><i className="ti-close" />
+                                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => { } }  ><i className="ti-close" />
                                                                             X
                                                                             </Link>
                                                                         </td>
@@ -141,7 +158,7 @@ const Cart = (props) => {
                                                     <div className="col-md-6 text-right">
                                                         <strong className="text-black"> 
 
-                                                    
+                                                   
                                                         
                                                         </strong>
                                                     </div>
