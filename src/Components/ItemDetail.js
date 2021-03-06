@@ -37,7 +37,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 pictureUrl
                 }, 
 
-          quant:cantidad,
+          quant:Number(cantidad),
 
         },]
       ]);
@@ -58,7 +58,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 title,
                 price,
                 pictureUrl,     
-                cantidad)
+                Number(cantidad))
 
     }
 

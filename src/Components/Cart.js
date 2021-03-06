@@ -1,5 +1,5 @@
 /* eslint-disable no-const-assign */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
@@ -10,27 +10,23 @@ const Cart = (props) => {
     const {cart, setCart, removeItem} = useContext(CartContext);
     console.log(cart);
 
-    // const totalFinal = cart.reduce( (prev, cur) => {
-    //     return prev + (Number(cur.quant)*Object.values(cur.item.price))
-    // }, 0)
+    const [carTotal, setCartTotal] = useState(0);
 
-    //cart.length*cantidad
-    
-    // Object.values(el.item.id).join('')
-    // const result = cart.values();
+    useEffect( () => {
+        total();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cart]);
 
-    // for (let re in result) {
-    //     alert(Object.values(re.item.id).join(''));
-    // }
+    const total = () => {
+        let totalVal = 0;
+        for (let i = 0; i < cart.length; i++) {
+            // alert(Object.values(cart[i].item.description));
+            // totalVal += cart[i].quant;
+            
+        }
+        setCartTotal(totalVal);
+    };
 
-
-    // alert(cart.length);
-
-    // alert(Object.values(el.item.id).join(''))
-    // alert(Object.values(el.item.description).join(''))
-    // const result_id = cart.filter( obj => Object.values(obj.item.id).join('').length > 0)
-    // alert(result_id.length)
-    // alert(result_id)
 
     return (
         <CartProvider>
@@ -73,7 +69,7 @@ const Cart = (props) => {
                                                                                 <div className="media-body">
                                                                                 <p>
                                                                                     
-                                                                          ${Number(cart.indexOf(el))} 
+                                                                          {Number(cart.indexOf(el))} 
                                                                          
 
                                                                                 </p>
@@ -102,7 +98,7 @@ const Cart = (props) => {
                                                                         </td>
 
                                                                         <td>
-                                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => { } }  ><i className="ti-close" />
+                                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => { removeItem(cart[Number(cart.indexOf(el))].item.id)} }  ><i className="ti-close" />
                                                                             X
                                                                             </Link>
                                                                         </td>
@@ -158,7 +154,7 @@ const Cart = (props) => {
                                                     <div className="col-md-6 text-right">
                                                         <strong className="text-black"> 
 
-                                                   
+                                                        Total: ${carTotal}
                                                         
                                                         </strong>
                                                     </div>

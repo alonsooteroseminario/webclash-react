@@ -14,18 +14,19 @@ export const CartProvider = ({ children, defaultCart }) => {
                                 title,
                                 price,
                                 pictureUrl
-                            }, quant:cantidad
+                            }, 
+                            quant:Number(cantidad)
                         };
 
         if (isInCart(id)) {
 
             const result = cart.filter( obj => Object.values(obj.item.id).join('') !== id)
-            setCart([...result, objeto ]);
+            setCart([...result, [objeto] ]);
 
             // console.log(cart);
             return cart;
         }else{
-            setCart([...cart, objeto ]);
+            setCart([...cart, [objeto] ]);
 
         }
         

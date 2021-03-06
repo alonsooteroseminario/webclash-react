@@ -1,7 +1,6 @@
 /* eslint-disable no-const-assign */
 import React from 'react';
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
 import { CartProvider } from '../context/CartContext';
 import firebase from 'firebase/app';
@@ -17,15 +16,41 @@ const CheckOut = (props) => {
     const [order, setOrderId] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+
+    const [carTotal, setCartTotal] = useState(0);
+
+    const nombreCompleto = () => {
+        let completo = firstName + " " + lastName;
+        return completo;
+    }
+
+    useEffect( () => {
+        total();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cart]);
+
+    const total = () => {
+        let totalVal = 0;
+        for (let i = 0; i < cart.length; i++) {
+            // alert(Object.values(cart[i].item.description));
+            // totalVal += cart[i].quant;
+            
+        }
+        setCartTotal(totalVal);
+    };
 
     const db = getFirestore();
     
     const orders = db.collection("orders");
     const newOrder = {
-        buyer: { },
+        buyer: { nombreCompleto , phone, email },
         items: cart,
         date: firebase.firestore.Timestamp.fromDate(new Date()),
-        total: {},
+        total: carTotal,
     }
     orders.add(newOrder).then( ({id}) => {
         setOrderId(id);
@@ -71,28 +96,28 @@ const CheckOut = (props) => {
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <label>First Name</label>
-                                                            <input type="text" id="fname" className="form-control" placeholder="Your firstname" />
+                                                            <input type="text" id="fname" className="form-control" placeholder="Your firstname" onChange={ e => setFirstName(e.target.value)}/>
                                                             <span className="error"></span> 
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <label>Last Name</label>
-                                                            <input type="text" id="lname" className="form-control" placeholder="Your lastname" />
+                                                            <input type="text" id="lname" className="form-control" placeholder="Your lastname" onChange={ e => setLastName(e.target.value)}/>
                                                             <span className="error"></span>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <label>E-mail Address</label>
-                                                            <input type="text" id="email" className="form-control" placeholder="State Province"  />
+                                                            <input type="text" id="email" className="form-control" placeholder="State Province" onChange={ e => setEmail(e.target.value)} />
                                                             <span className="error"></span>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <label>Phone Number</label>
-                                                            <input type="text" id="phone" className="form-control" placeholder />
+                                                            <input type="text" id="phone" className="form-control" placeholder onChange={ e => setPhone(e.target.value)}/>
                                                             <span className="error"></span>
                                                         </div>
                                                     </div>
