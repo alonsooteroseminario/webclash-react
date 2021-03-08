@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
 
 
     function getFromCart(itemId) {
-        alert(itemId)
+        // alert(itemId)
         debugger;
         return cart.find( (obj) => String(Object.values(obj.item.id)) === itemId ) !== undefined;
     }

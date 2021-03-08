@@ -3,7 +3,7 @@ import React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
 import firebase from 'firebase/app';
-import "@firebase/firestore";
+import '@firebase/firestore';
 import { getFirestore } from '../firebase';
 import { CartProvider } from '../context/CartContext';
 
@@ -19,18 +19,21 @@ const CheckOut = (props) => {
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const [nombreCompleto, setNombreCompleto] = useState('');
 
     const [carTotal, setCartTotal] = useState(0);
 
-    const nombreCompleto = () => {
+    const sumaNombreCompleto = () => {
         let completo = firstName + " " + lastName;
+        setNombreCompleto(completo);
         return completo;
     }
 
     useEffect( () => {
         total();
+        sumaNombreCompleto();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cart]);
+    }, [cart, firstName, lastName]);
 
     const total = () => {
         let totalVal = 0;
@@ -42,22 +45,42 @@ const CheckOut = (props) => {
         setCartTotal(totalVal);
     };
 
-    const db = getFirestore();
+
+    const finalizarCompra = () => {
+
+        const baseDeDatos = getFirestore();
+        alert(nombreCompleto);
+        console.log(cart);
     
-    const orders = db.collection("orders");
-    const newOrder = {
-        buyer: { nombreCompleto , phone, email },
-        items: cart,
-        date: firebase.firestore.Timestamp.fromDate(new Date()),
-        total: carTotal,
-    }
-    // orders.add(newOrder).then( ({id}) => {
-    //     setOrderId(id);
-    // }).catch( err => {
-    //     setError(err);
-    // }).finally( () => {
-    //     setLoading(false);
-    // });
+        debugger;
+        const orders = baseDeDatos.collection('orders');
+        console.log(orders);
+        let newOrder = {
+            buyer: { nombreCompleto , phone, email },
+            items: [...cart],
+            date: firebase.firestore.Timestamp.fromDate(new Date()),
+            total: carTotal,
+        };
+        console.log(newOrder);
+        orders.add(newOrder).then( (or) => {
+            let id = or.id;
+            console.log(id);
+            console.log(or);
+            debugger;
+            alert(or.id)
+            setOrderId(id);
+            console.log(order);
+            alert(order);
+        }).catch( (err) => {
+            setError(err);
+            alert(error)
+        }).finally( () => {
+            setLoading(false);
+        });
+
+    };
+
+
 
     // var docRef = db.collection('items').doc(itemId);
 
@@ -75,6 +98,7 @@ const CheckOut = (props) => {
 
 
     return (
+        <CartContext.Provider value={{cart, setCart, addItem, removeItem, clear}}>
         <CartProvider>
             <div>
                 <div>
@@ -172,7 +196,7 @@ const CheckOut = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button className="btn btn-primary btn-block">Proceed to Payment</button>
+                                            <button className="btn btn-primary btn-block" onClick={ () => { finalizarCompra() }}>Proceed to Payment</button>
                                         </div>
                                     </div>
                                 </form>
@@ -183,6 +207,7 @@ const CheckOut = (props) => {
                 </div>
             </div>
         </CartProvider>
+        </CartContext.Provider>
     )
 
 
