@@ -1,44 +1,59 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children, defaultCart }) => {
+export const CartProvider = ({ children }) => {
     //Cart es un array con cualquier tipo de elemento: {item:{}, cantidad:0}
     const [cart, setCart] = useState([]);
 
-    function addItem( id, description, title, price, pictureUrl, cantidad) {
+    useEffect( () => {
+        if(localStorage.getItem("carrito") !== null ) {
+            setCart(JSON.parse(localStorage.getItem("carrito")));
+        }
+    }, [])
 
-        const objeto = {item:{
-                                id,
-                                description,
-                                title,
-                                price,
-                                pictureUrl
-                            }, 
-                            quant:Number(cantidad)
-                        };
+    function addItem(item, cantidad) {
 
-        if (isInCart(id)) {
+        const objeto = {item:item, quant:Number(cantidad) };
 
-            const result = cart.filter( obj => Object.values(obj.item.id).join('') !== id)
-            setCart([...result, [objeto] ]);
+        const id = Object.values(objeto.item.id).join('');
+        // alert(Object.values(objeto.item.id).join(''));
+        if (cart.length>0) {
+            if (isInCart(id)) {
 
-            // console.log(cart);
+            
+                const result = cart.filter( (obj) => Object.values(obj.item.id).join('') !== id)
+                // localStorage.setItem("carrito", JSON.stringify([objeto]))
+                debugger;
+                // setCart(result);
+                setCart([...result, objeto]);
+    
+                // console.log(cart);
+                return cart;
+            }
+            else {
+                localStorage.setItem("carrito", JSON.stringify([objeto]))
+                setCart([...cart, objeto ]);
+                return cart;
+            }
+        }
+        else{
+
+            localStorage.setItem("carrito", JSON.stringify([objeto]))
+            setCart([...cart, objeto ]);
             return cart;
-        }else{
-            setCart([...cart, [objeto] ]);
-
         }
         
     }
 
     function removeItem(itemId) {
+
         
         if (cart.length !== 0) {
 
             debugger;
 
-            const result = cart.filter( obj => Object.values(obj.item.id).join('') !== itemId)
+            const result = cart.filter( (obj) => Object.values(obj.item.id).join('') !== itemId)
             setCart(result);
 
             // console.log(cart);
@@ -57,12 +72,13 @@ export const CartProvider = ({ children, defaultCart }) => {
 
 
     function getFromCart(itemId) {
-
-        return cart.find( obj => Object.values(obj.item.id).join('') === itemId );
+        alert(itemId)
+        debugger;
+        return cart.find( (obj) => String(Object.values(obj.item.id)) === itemId ) !== undefined;
     }
     
     function isInCart(itemId) {
-        return itemId === undefined ? undefined : getFromCart(itemId)!== undefined
+        return itemId === undefined ? false : getFromCart(itemId) !== undefined
 
     }
 
@@ -70,5 +86,5 @@ export const CartProvider = ({ children, defaultCart }) => {
         <CartContext.Provider value={{cart, setCart, addItem, removeItem, clear}}>
             {children}
         </CartContext.Provider>
-    )
-}
+        )
+    }

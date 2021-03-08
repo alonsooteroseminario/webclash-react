@@ -7,7 +7,7 @@ import { CartProvider } from '../context/CartContext';
 
 const Cart = (props) => {
 
-    const {cart, setCart, removeItem} = useContext(CartContext);
+    const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
     console.log(cart);
 
     const [carTotal, setCartTotal] = useState(0);
@@ -21,7 +21,7 @@ const Cart = (props) => {
         let totalVal = 0;
         for (let i = 0; i < cart.length; i++) {
             // alert(Object.values(cart[i].item.description));
-            // totalVal += cart[i].quant;
+            totalVal = totalVal + (Number(cart[i].quant) * Number(cart[i].item.price));
             
         }
         setCartTotal(totalVal);
@@ -29,7 +29,7 @@ const Cart = (props) => {
 
 
     return (
-        <CartProvider>
+        <CartContext.Provider value={{cart, setCart, addItem, removeItem, clear}}>
             <div>
                         <section>
 
@@ -55,9 +55,12 @@ const Cart = (props) => {
                                                     <tbody>
 
                                                         {
+                                                            
+
+
                                                         cart.map( (el) => {
 
-                                                            
+                                                           
                                     
                                                             return(
                                                                     <tr>
@@ -69,7 +72,7 @@ const Cart = (props) => {
                                                                                 <div className="media-body">
                                                                                 <p>
                                                                                     
-                                                                          {Number(cart.indexOf(el))} 
+                                                                          {el.item.id}
                                                                          
 
                                                                                 </p>
@@ -79,26 +82,26 @@ const Cart = (props) => {
 
                                                                         <td>
                                                                             <h5 className="mb-0">
-                                                                           
+                                                                            {el.item.description}
                                                                             </h5>
                                                                         </td>
 
                                                                         <td>
-                                                                        
+                                                                            {el.item.title}
                                                                         </td>
 
                                                                         <td>
                                                                             <h5 className="mb-0">
-                                                                            
+                                                                            {el.item.price}
                                                                             </h5>
                                                                         </td>
 
                                                                         <td>
-                                                                        
+                                                                            {el.item.pictureUrl}
                                                                         </td>
 
                                                                         <td>
-                                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => { removeItem(cart[Number(cart.indexOf(el))].item.id)} }  ><i className="ti-close" />
+                                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={ () => { removeItem(cart[cart.indexOf(el)].item.id)} }  ><i className="ti-close" />
                                                                             X
                                                                             </Link>
                                                                         </td>
@@ -107,7 +110,7 @@ const Cart = (props) => {
                                                                             <div className="d-flex justify-content-center align-items-center">
                                                                             
                                                                                 <input className="form-product" type="number" name="form-product"  />
-
+                                                                                {Number(el.quant)}
                                                                             </div>
                                                                         </td>
 
@@ -154,7 +157,7 @@ const Cart = (props) => {
                                                     <div className="col-md-6 text-right">
                                                         <strong className="text-black"> 
 
-                                                        Total: ${carTotal}
+                                                        Total de elementos: {carTotal}
                                                         
                                                         </strong>
                                                     </div>
@@ -185,7 +188,8 @@ const Cart = (props) => {
                         </section>
             
             </div>
-        </CartProvider>
+        </CartContext.Provider>
+        
         )
 
 }

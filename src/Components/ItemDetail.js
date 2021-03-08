@@ -26,21 +26,22 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
       debugger;
       // guardar en el CartContext el objeto { item: {}, quantity}
-      setCart([...cart,
-        [{ 
+      // localStorage.setItem("carrito", JSON.stringify([{ item:{  id, description,   title, price, pictureUrl }, quant:cantidad, },]))
+      // setCart([...cart,
+      //   [{ 
 
-          item:{ 
-                id,
-                description, 
-                title,
-                price,
-                pictureUrl
-                }, 
+      //     item:{ 
+      //           id,
+      //           description, 
+      //           title,
+      //           price,
+      //           pictureUrl
+      //           }, 
 
-          quant:Number(cantidad),
+      //     quant:cantidad,
 
-        },]
-      ]);
+      //   },]
+      // ]);
 
     }
 
@@ -51,14 +52,11 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
     function addToCart(cantidad) {
       
+      const item = {id, description, title, price, pictureUrl};
+      const quant = cantidad; 
+
       setCantidad(cantidad);
-      addItem(
-                id,
-                description, 
-                title,
-                price,
-                pictureUrl,     
-                Number(cantidad))
+      addItem(item, quant);
 
     }
 
@@ -107,7 +105,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
                 <p>
                   <button onClick={ () => { 
-
+                    
                     addToCart(document.getElementById("input1").value);
 
                     } } >
@@ -141,11 +139,11 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
               </div>
           </div>
-        </CartProvider>
+          </CartProvider>
       )
     }else {
       return (
-      <CartProvider>
+        <CartProvider>
         <div className={'item item-' + id} key={id} >
           <img src={pictureUrl} />
             <div className='item-details'>
@@ -193,7 +191,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
               </p>
             </div>
         </div>
-      </CartProvider>
+        </CartProvider>
 
       )
     }

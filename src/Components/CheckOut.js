@@ -2,15 +2,14 @@
 import React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
-import { CartProvider } from '../context/CartContext';
 import firebase from 'firebase/app';
-import '@firebase/firestore';
+import "@firebase/firestore";
 import { getFirestore } from '../firebase';
-
+import { CartProvider } from '../context/CartContext';
 
 const CheckOut = (props) => {
 
-    const {cart, setCart, removeItem} = useContext(CartContext);
+    const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
     console.log(cart);
 
     const [order, setOrderId] = useState({});
@@ -37,7 +36,7 @@ const CheckOut = (props) => {
         let totalVal = 0;
         for (let i = 0; i < cart.length; i++) {
             // alert(Object.values(cart[i].item.description));
-            // totalVal += cart[i].quant;
+            totalVal = totalVal + (Number(cart[i].quant) * Number(cart[i].item.price));
             
         }
         setCartTotal(totalVal);
@@ -52,13 +51,13 @@ const CheckOut = (props) => {
         date: firebase.firestore.Timestamp.fromDate(new Date()),
         total: carTotal,
     }
-    orders.add(newOrder).then( ({id}) => {
-        setOrderId(id);
-    }).catch( err => {
-        setError(err);
-    }).finally( () => {
-        setLoading(false);
-    });
+    // orders.add(newOrder).then( ({id}) => {
+    //     setOrderId(id);
+    // }).catch( err => {
+    //     setError(err);
+    // }).finally( () => {
+    //     setLoading(false);
+    // });
 
     // var docRef = db.collection('items').doc(itemId);
 
@@ -127,17 +126,23 @@ const CheckOut = (props) => {
                                         <div className="col-lg-5 col-md-12 md-mt-5">
                                             <div className="p-3 p-lg-5 border">
                                                 <h3 className="mb-3">Your Order</h3>
-                                                {(cart.length > 0) ?
-                                                <ul className="list-unstyled">
-                                                    {cart.map((el) => (
-                                                    <li className="mb-3 border-bottom pb-3"><span>  x  </span> $ </li>
-                                                    ))}
-                                                    <li className="mb-3 border-bottom pb-3"><span> Shipping </span> $ 0.00</li>
-                                                    <li className="mb-3 border-bottom pb-3"><span> Subtotal </span> $ </li>
-                                                    <li><span><strong className="cart-total"> Total :</strong></span>  <strong className="cart-total">$ </strong>
-                                                    </li>
-                                                </ul>
-                                                :  <div>No Items found</div>
+                                                {  (cart.length > 0) 
+                                                    ?
+
+                                                    <ul className="list-unstyled">
+                                                        {cart.map((el) => (
+                                                        <li className="mb-3 border-bottom pb-3"><span>  {el.item.title}  </span> $ </li>
+                                                        ))}
+                                                        <li className="mb-3 border-bottom pb-3"><span> Shipping </span> $ 0.00</li>
+                                                        <li className="mb-3 border-bottom pb-3"><span> Subtotal </span> $ </li>
+                                                        <li><span><strong className="cart-total"> Total :</strong></span>  <strong className="cart-total">$ {carTotal} </strong>
+                                                        </li>
+                                                    </ul>
+
+                                                    :  
+
+                                                    <div>No Items found</div>
+
                                                 }
                                             </div>
                                             <div className="cart-detail my-5">

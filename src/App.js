@@ -6,6 +6,7 @@ import ItemDetailContainer from './Components/ItemDetailContainer';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
+import { CartContext } from './context/CartContext';
 import Cart from './Components/Cart';
 import CheckOut from './Components/CheckOut';
 
@@ -13,8 +14,8 @@ import CheckOut from './Components/CheckOut';
 function App() {
 
   return (
+    
     <CartProvider>
-
       <div className="App">
         <BrowserRouter>
           <NavBar />
@@ -37,8 +38,8 @@ function App() {
           </Switch>
         </BrowserRouter>
       </div>
-      
-    </CartProvider>
+      </CartProvider>
+    
 
   );
 }
