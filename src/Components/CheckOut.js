@@ -46,8 +46,11 @@ const CheckOut = (props) => {
     };
 
 
-    const finalizarCompra = () => {
+    
 
+    const finalizarCompra = async () => {
+
+        setLoading(true);
         const baseDeDatos = getFirestore();
         alert(nombreCompleto);
         console.log(cart);
@@ -55,14 +58,16 @@ const CheckOut = (props) => {
         debugger;
         const orders = baseDeDatos.collection('orders');
         console.log(orders);
+
         let newOrder = {
             buyer: { nombreCompleto , phone, email },
             items: [...cart],
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: carTotal,
         };
+
         console.log(newOrder);
-        orders.add(newOrder).then( (or) => {
+        await orders.add(newOrder).then( (or) => {
             let id = or.id;
             console.log(id);
             console.log(or);
