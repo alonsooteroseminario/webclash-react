@@ -46,17 +46,18 @@ const CheckOut = (props) => {
     };
 
 
-    
+    const baseDeDatos = getFirestore();
 
     const finalizarCompra = async () => {
 
         setLoading(true);
-        const baseDeDatos = getFirestore();
-        alert(nombreCompleto);
+        
+        // alert(nombreCompleto);
         console.log(cart);
     
         debugger;
         const orders = baseDeDatos.collection('orders');
+
         console.log(orders);
 
         let newOrder = {
@@ -103,7 +104,7 @@ const CheckOut = (props) => {
 
 
     return (
-        <CartContext.Provider value={{cart, setCart, addItem, removeItem, clear}}>
+
         <CartProvider>
             <div>
                 <div>
@@ -212,7 +213,7 @@ const CheckOut = (props) => {
                 </div>
             </div>
         </CartProvider>
-        </CartContext.Provider>
+ 
     )
 
 
