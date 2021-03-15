@@ -46,43 +46,49 @@ const CheckOut = (props) => {
     };
 
 
-    const baseDeDatos = getFirestore();
-
     const finalizarCompra = async () => {
 
         setLoading(true);
         
         // alert(nombreCompleto);
-        console.log(cart);
     
         debugger;
-        const orders = baseDeDatos.collection('orders');
 
-        console.log(orders);
+        const baseDeDatos = getFirestore();
+
+        const orders = baseDeDatos.collection('orders');
 
         let newOrder = {
             buyer: { nombreCompleto , phone, email },
             items: [...cart],
             date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total: carTotal,
+            total: carTotal
         };
 
         console.log(newOrder);
-        await orders.add(newOrder).then( (or) => {
-            let id = or.id;
-            console.log(id);
-            console.log(or);
-            debugger;
-            alert(or.id)
-            setOrderId(id);
-            console.log(order);
-            alert(order);
-        }).catch( (err) => {
-            setError(err);
-            alert(error)
-        }).finally( () => {
-            setLoading(false);
-        });
+
+        // console.log(newOrder);
+        alert(newOrder.buyer.nombreCompleto.toString());
+
+        orders.add(newOrder);
+
+        // orders.add(newOrder).then( (or) => {
+        //     let id = or.id;
+        //     console.log(id);
+        //     console.log(or);
+        //     debugger;
+        //     // alert(or.id)
+        //     setOrderId(id);
+        //     console.log(order);
+        //     // alert(order);
+        // }).catch( (err) => {
+        //     setError(err);
+        //     // alert(error)
+        // }).finally( () => {
+        //     setLoading(false);
+        // });
+
+        console.log(orders);
 
     };
 
@@ -112,8 +118,14 @@ const CheckOut = (props) => {
                     <section className="position-relative">
                     </section>
                     {/*hero section end*/}
+
+
                     {/*body content start*/}
                     <div className="page-content">
+                        { order.length !== 0 
+                        
+                        ?
+                    
                         <section>
                             <div className="container">
                                 <form>
@@ -208,8 +220,19 @@ const CheckOut = (props) => {
                                 </form>
                             </div>
                         </section>
+
+
+
+                        :
+
+                        <div>Gracias por tu compra, ID : {order} </div>
+                    
+                        }
+
                     </div>
                     {/*body content end*/}
+
+
                 </div>
             </div>
         </CartProvider>
