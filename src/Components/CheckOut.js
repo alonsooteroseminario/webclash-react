@@ -14,7 +14,7 @@ const CheckOut = (props) => {
 
     const [order, setOrderId] = useState({});
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
@@ -45,7 +45,6 @@ const CheckOut = (props) => {
         setCartTotal(totalVal);
     };
 
-
     const finalizarCompra = async () => {
 
         setLoading(true);
@@ -70,23 +69,23 @@ const CheckOut = (props) => {
         // console.log(newOrder);
         alert(newOrder.buyer.nombreCompleto.toString());
 
-        orders.add(newOrder);
+        // orders.add(newOrder);
 
-        // orders.add(newOrder).then( (or) => {
-        //     let id = or.id;
-        //     console.log(id);
-        //     console.log(or);
-        //     debugger;
-        //     // alert(or.id)
-        //     setOrderId(id);
-        //     console.log(order);
-        //     // alert(order);
-        // }).catch( (err) => {
-        //     setError(err);
-        //     // alert(error)
-        // }).finally( () => {
-        //     setLoading(false);
-        // });
+        orders.add(newOrder).then( (or) => {
+            let id = or.id;
+            console.log(id);
+            console.log(or);
+            debugger;
+            // alert(or.id)
+            setOrderId(id);
+            console.log(order);
+            // alert(order);
+        }).catch( (err) => {
+            setError(err);
+            // alert(error)
+        }).finally( () => {
+            setLoading(false);
+        });
 
         console.log(orders);
 
@@ -122,7 +121,7 @@ const CheckOut = (props) => {
 
                     {/*body content start*/}
                     <div className="page-content">
-                        { order.length !== 0 
+                        { loading !== true
                         
                         ?
                     
