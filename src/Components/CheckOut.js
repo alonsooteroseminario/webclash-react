@@ -12,7 +12,7 @@ const CheckOut = (props) => {
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
     console.log(cart);
 
-    const [order, setOrderId] = useState({});
+    const [orderId, setOrderId] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [firstName, setFirstName] = useState('');
@@ -78,13 +78,12 @@ const CheckOut = (props) => {
             debugger;
             // alert(or.id)
             setOrderId(id);
-            console.log(order);
             // alert(order);
         }).catch( (err) => {
             setError(err);
             // alert(error)
         }).finally( () => {
-            setLoading(false);
+            // setLoading(false);
         });
 
         console.log(orders);
@@ -224,7 +223,18 @@ const CheckOut = (props) => {
 
                         :
 
-                        <div>Gracias por tu compra, ID : {order} </div>
+                        <section>
+                            <div className="container">
+                                <form>
+                                    <div className="row">
+                                        <div className="container">
+                                            <h2 className="mb-4">Gracias por tu compra! tu Código de order es: {orderId.toString()} </h2>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                       
                     
                         }
 
