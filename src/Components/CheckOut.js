@@ -24,6 +24,7 @@ const CheckOut = () => {
     const [nombreCompleto, setNombreCompleto] = useState('');
 
     const [carTotal, setCartTotal] = useState(0);
+    const [itemTotal, setItemTotal] = useState(0);
 
     const sumaNombreCompleto = () => {
         let completo = firstName + " " + lastName;
@@ -33,6 +34,7 @@ const CheckOut = () => {
 
     useEffect( () => {
         total();
+        totalItem();
         sumaNombreCompleto();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, firstName, lastName]);
@@ -43,6 +45,14 @@ const CheckOut = () => {
             totalVal = totalVal + (Number(cart[i].quant) * Number(cart[i].item.price));
         }
         setCartTotal(totalVal);
+    };
+
+    const totalItem = () => {
+        let totalVal = 0;
+        for (let i = 0; i < cart.length; i++) {
+            totalVal = totalVal + (Number(cart[i].quant));  
+        }
+        setItemTotal(totalVal);
     };
 
     const finalizarCompra = async () => {
@@ -107,14 +117,14 @@ const CheckOut = () => {
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <label>Nombres</label>
-                                                            <input type="text" id="fname" className="form-control" placeholder="Nano" onChange={ e => setFirstName(e.target.value)}/>
+                                                            <input type="text" id="fname" className="form-control" placeholder="Jorge Alonso" onChange={ e => setFirstName(e.target.value)}/>
                                                             <span className="error"></span> 
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <label>Apellidos</label>
-                                                            <input type="text" id="lname" className="form-control" placeholder="Perez" onChange={ e => setLastName(e.target.value)}/>
+                                                            <input type="text" id="lname" className="form-control" placeholder="Perez Córdova" onChange={ e => setLastName(e.target.value)}/>
                                                             <span className="error"></span>
                                                         </div>
                                                     </div>
@@ -148,10 +158,10 @@ const CheckOut = () => {
 
                                                     <ul className="list-unstyled">
                                                         {cart.map((el) => (
-                                                        <li className="mb-3 border-bottom pb-3"><span>  {el.item.title}  </span> $ </li>
+                                                        <li className="mb-3 border-bottom pb-3"><span>  {el.item.title} x {el.quant} = </span> ${Number(el.item.price)*Number(el.quant)} </li>
                                                         ))}
-                                                        <li className="mb-3 border-bottom pb-3"><span> Shipping </span> $ 0.00</li>
-                                                        <li><span><strong className="cart-total"> Total :</strong></span>  <strong className="cart-total">$ {carTotal} </strong>
+                                                        <li className="mb-3 border-bottom pb-3"><span> Shipping </span> $ 5.00</li>
+                                                        <li><span><strong className="cart-total"> Comprará {itemTotal} items por el total de:</strong></span>  <strong className="cart-total">${carTotal+5} </strong>
                                                         </li>
                                                     </ul>
 
