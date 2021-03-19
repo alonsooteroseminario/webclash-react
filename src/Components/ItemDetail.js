@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import { CartContext } from '../context/CartContext';
-import { CartProvider } from '../context/CartContext';
 
 
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
@@ -12,7 +11,17 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
     const [quantity, setQuantity] = useState(0);
     const [cantidad, setCantidad] = useState(0);
 
+    useEffect( () => {
+      document.getElementById("input1").addEventListener("onClick", onAdd);
+      console.log('App mounted');
 
+      return () => {
+          document.removeEventListener("onClick", onAdd);
+          console.log('will unmount')
+      }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
     // useContext()
     // eslint-disable-next-line no-unused-vars
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
@@ -25,23 +34,6 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
 
       debugger;
-      // guardar en el CartContext el objeto { item: {}, quantity}
-      // localStorage.setItem("carrito", JSON.stringify([{ item:{  id, description,   title, price, pictureUrl }, quant:cantidad, },]))
-      // setCart([...cart,
-      //   [{ 
-
-      //     item:{ 
-      //           id,
-      //           description, 
-      //           title,
-      //           price,
-      //           pictureUrl
-      //           }, 
-
-      //     quant:cantidad,
-
-      //   },]
-      // ]);
 
     }
 
@@ -70,7 +62,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
     if (quantity === 0) {
       return (
-        <CartProvider>
+        <CartContext.Provider value={{ cart, setCart, addItem, removeItem, clear }}>
           <div className={'item item-' + id} key={id} >
             
             <img src={pictureUrl} />
@@ -139,11 +131,11 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
               </div>
           </div>
-          </CartProvider>
+          </CartContext.Provider>
       )
     }else {
       return (
-        <CartProvider>
+        <CartContext.Provider value={{ cart, setCart, addItem, removeItem, clear }}>
         <div className={'item item-' + id} key={id} >
           <img src={pictureUrl} />
             <div className='item-details'>
@@ -162,9 +154,15 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                   Terminar mi compra
                 </button>
               </Link>
+
                 <p>
                   Se comprarán {Number(quantity)} items
                 </p>
+                <Link to={'/'}>
+                <button>
+                  Seguir comprando
+                </button>
+              </Link>
                 <p>
                 El carrito tiene {Number(cart.length)} items y se va a agregar
                 al carrito el nuevo item: {title} con cantidad de: {cantidad}
@@ -191,7 +189,7 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
               </p>
             </div>
         </div>
-        </CartProvider>
+        </CartContext.Provider>
 
       )
     }

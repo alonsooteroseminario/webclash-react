@@ -7,12 +7,13 @@ import '@firebase/firestore';
 import { getFirestore } from '../firebase';
 import { CartProvider } from '../context/CartContext';
 
-const CheckOut = (props) => {
+const CheckOut = () => {
 
-    const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
+    const {cart} = useContext(CartContext);
     console.log(cart);
 
     const [orderId, setOrderId] = useState({});
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [firstName, setFirstName] = useState('');
