@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import Cart from './Components/Cart';
 import CheckOut from './Components/CheckOut';
+import ItemNotFound from './Components/ItemNotFound';
 
 
 function App() {
@@ -34,10 +35,13 @@ function App() {
             <Route exact path="/checkout">
               <CheckOut />
             </Route>
+            <Route exact path="/item/">
+              <ItemNotFound />
+            </Route>
           </Switch>
         </BrowserRouter>
       </div>
-      </CartProvider>
+    </CartProvider>
     
 
   );
