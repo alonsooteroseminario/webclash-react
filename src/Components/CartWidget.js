@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const CartWidget = () => {
 
@@ -17,14 +18,17 @@ const CartWidget = () => {
         ?
         <div>
           <span>
-            <i className="shopping-cart"></i>
+          <Link to={'/cart'} >
+            <i className="shopping-cart" type="submit" value="Ir al Carrito" ></i>
+          </Link>
           </span>
         </div>
         :
         <div>
           <span>
-            <i className="shopping-cart">
-            </i>
+          <Link to={'/cart'} >
+            <i className="shopping-cart" type="submit" value="Ir al Carrito" ></i>
+            </Link>
             {elements}
           </span>
         </div>
