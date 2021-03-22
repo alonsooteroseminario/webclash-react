@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-const-assign */
 import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
@@ -101,7 +102,7 @@ const Cart = (props) => {
                                                                         </td>
 
                                                                         <td>
-                                                                            {el.item.pictureUrl}
+                                                                            <img src={el.item.pictureUrl} />
                                                                         </td>
 
                                                                         <td>
