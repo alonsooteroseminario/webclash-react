@@ -32,8 +32,6 @@ function ItemList ({ home }) {
       })
     },[])
 
-
-
     useEffect( () => {
       
       // aqui va el registro de los eventos SIEMPRE

@@ -10,7 +10,6 @@ function ItemCount ( { stock, initial, onAdd } ) {
 
     const [suma, setSuma] = useState(Number(initial));
 
-
     console.log('Stock : ' + carrito);
     console.log('Agregados : ' + suma);
     console.log('Count : ' + count);
@@ -35,30 +34,24 @@ function ItemCount ( { stock, initial, onAdd } ) {
                 <h1>No hay stock disponible</h1>
             </div>
         );
-        
     }
-
     else if (carrito < 0) {
         return(
             <div>
                 <input disabled="disabled" ></input>
                 <p>Stock Disponible: 0 </p>
                 <h1>No hay stock disponible</h1>
-                
             </div>
         );
     } 
-
     else
     {
-
         if ( suma > carrito ) {
             return(
                 <div>
                     <input className="form-product" type="number" name="form-product" value={carrito} onChange={ e => setSuma(e.target.value)} ></input>
                     <p> El contador no puede ser mayor al Stock Disponible </p>
                 </div>
-        
             );
         }
         else if (suma < 0) {
@@ -67,7 +60,6 @@ function ItemCount ( { stock, initial, onAdd } ) {
                     <input className="form-product" type="number" name="form-product" value={0} onChange={ e => setSuma(e.target.value)} ></input>
                     <p> El contador no puede ser menor a 0 </p>
                 </div>
-        
             );
         }
         else {
@@ -77,14 +69,9 @@ function ItemCount ( { stock, initial, onAdd } ) {
                     <p>Se agregarán : {suma} items </p>
                     <p>Stock Disponible: { Number(count) + Number(stock) } </p>
                 </div>
-        
             );
         }
-
-
     }
-
-
 }
 
 

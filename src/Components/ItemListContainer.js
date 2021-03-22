@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemList from './ItemList';
 
-
 const ItemListContainer = (props) => {
     return (
         <div style={{ background: 'white' }}>

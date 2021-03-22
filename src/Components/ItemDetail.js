@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import { CartContext } from '../context/CartContext';
 
-
 function ItemDetail ({ id , description, title, price, pictureUrl }) {
-
 
     const [quantity, setQuantity] = useState(0);
     const [cantidad, setCantidad] = useState(0);
@@ -22,7 +20,6 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-    // useContext()
     // eslint-disable-next-line no-unused-vars
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
     // console.log(cart);
@@ -31,9 +28,6 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
     
       setQuantity(cantidad);
       setCantidad(cantidad);
-
-
-      debugger;
 
     }
 
@@ -59,52 +53,40 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
     }
     
-
     if (quantity === 0) {
       return (
         <CartContext.Provider value={{ cart, setCart, addItem, removeItem, clear }}>
           <div className={'item item-' + id} key={id} >
-            
             <img src={pictureUrl} />
               <div className='item-details'>
-
                 <h1 className='item-name'>
                   {title}
                 </h1>
-
                 <h2 className='item-price'>
                   ${Number(price)}
                 </h2>
-
                 <p className='item-desc'>
                   {description}
                 </p>
-
                 <p className="item-count">
                   <ItemCount initial="0" stock="5" />
                 </p>
-
                 <p>
                   <button onClick={ () => {
 
                     onAdd(document.getElementById("input1").value);
 
-                    
                     } } >
                     Comprar
                   </button>
                 </p>
-
                 <p>
                   <button onClick={ () => { 
-                    
                     addToCart(document.getElementById("input1").value);
-
                     } } >
                     Agregar al Carrito
                   </button>
                 </p>
-
                 <p>
                 El carrito tiene {Number(cart.length)} items y se va a agregar
                 al carrito el nuevo item: {title} con cantidad de: {cantidad}
@@ -112,14 +94,11 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
 
                 <p>
                   <button onClick={ () => {
-                    
                     removeToCart( cantidad );
-                  
                   } } >
                     Borrar del Carrito
                   </button>
                 </p>
-
                 <p>
                   <button onClick={ () => {
                     clear();
@@ -128,7 +107,6 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                     Borrar Todo
                   </button>
                 </p>
-
               </div>
           </div>
           </CartContext.Provider>
@@ -154,7 +132,6 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                   Terminar mi compra
                 </button>
               </Link>
-
                 <p>
                   Se comprarán {Number(quantity)} items
                 </p>
@@ -167,7 +144,6 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
                 El carrito tiene {Number(cart.length)} items y se va a agregar
                 al carrito el nuevo item: {title} con cantidad de: {cantidad}
                 </p>
-
                 <p>
                   <button onClick={ () => {
                     
@@ -190,12 +166,8 @@ function ItemDetail ({ id , description, title, price, pictureUrl }) {
             </div>
         </div>
         </CartContext.Provider>
-
       )
     }
-
-
-
 }
 
 export default ItemDetail;

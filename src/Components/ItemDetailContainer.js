@@ -62,17 +62,13 @@ const ItemDetailContainer = (props) => {
       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ID]);
-
-
+    
         return (
         <div style={{ background: 'white' }}>
             <h3>{props.greeting}</h3>
             <ItemDetail id={user.id} description={user.description} title={user.title} price={user.price} pictureUrl={user.pictureUrl} />
         </div>
         )
-
-
-
 }
 
 export default ItemDetailContainer;

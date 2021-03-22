@@ -7,7 +7,6 @@ import { CartProvider } from '../context/CartContext';
 
 function Item ({ id , description, title, price, pictureUrl }) {
 
-    // useContext()
     // eslint-disable-next-line no-unused-vars
     const {cart, setCart, addItem, removeItem, clear} = useContext(CartContext);
 
@@ -26,40 +25,38 @@ function Item ({ id , description, title, price, pictureUrl }) {
 
     return (
       <CartContext.Provider value={{cart, setCart, addItem, removeItem, clear}}>
-       <CartProvider>
-        <div className="card" >
-            <img src={pictureUrl} className="card-img-top" alt="Card image cap" width="25%" height="25%" />
-                <div className="card-block" key={id} >
-                    <h4 className="card-title">{`${title}: $${price}`}</h4>
-                     {/* <input className="add-to-cart btn btn-primary" type="submit" value="Agregar" /> */}
-                     <ItemCount initial="0" stock="5" />
-                </div>
-                {/* este tiene que ser dinamico */}
-              <Link to={`/item/${id}`} >
-                <div className="add-to-cart">
-                   <input className="add-to-cart btn btn-primary" type="submit" value="Ir al Detalle de Producto" />
-                </div>
-              </Link>
-              
-              <p>
-              <Link to={'/cart'}>
-                <button>
-                  Ir al carrito de Compras
-                </button>
-              </Link>
-                </p>
-
+        <CartProvider>
+          <div className="card" >
+              <img src={pictureUrl} className="card-img-top" alt="Card image cap" width="25%" height="25%" />
+                  <div className="card-block" key={id} >
+                      <h4 className="card-title">{`${title}: $${price}`}</h4>
+                      <ItemCount initial="0" stock="5" />
+                  </div>
+                  {/* este tiene que ser dinamico */}
+                <Link to={`/item/${id}`} >
+                  <div className="add-to-cart">
+                    <input className="add-to-cart btn btn-primary" type="submit" value="Ir al Detalle de Producto" />
+                  </div>
+                </Link>
+                
                 <p>
-                  <button onClick={ () => { 
-                    
-                    // addToCart(document.getElementById("input1").value);
-                    addToCart(document.getElementById("input1").value);
-
-                    } } >
-                    Agregar al Carrito
+                <Link to={'/cart'}>
+                  <button>
+                    Ir al carrito de Compras
                   </button>
-                </p>
-        </div>
+                </Link>
+                  </p>
+
+                  <p>
+                    <button onClick={ () => { 
+
+                      addToCart(document.getElementById("input1").value);
+
+                      } } >
+                      Agregar al Carrito
+                    </button>
+                  </p>
+          </div>
         </CartProvider>
       </CartContext.Provider>
     )

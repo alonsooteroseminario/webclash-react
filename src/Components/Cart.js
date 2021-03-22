@@ -62,11 +62,8 @@ const Cart = (props) => {
                                                     </thead>
                                                     <tbody>
 
-                                                        {
-                                                            
-                                                        cart.map( (el) => {
-
-                                                           
+                                                        { cart.map( (el) => {
+ 
                                                             return(
                                                                     <tr>
                                                                         <td>
@@ -144,8 +141,6 @@ const Cart = (props) => {
                                                     </div>
                                                 </div>
 
-
-
                                                     { cart.map( (el) => {
                                                         return(
 
@@ -196,11 +191,8 @@ const Cart = (props) => {
                                         </div>
                                 }
                             </div>
-                            
-
                         </section>
-            
-            </div>
+                </div>
             </CartProvider>
         </CartContext.Provider>
         
