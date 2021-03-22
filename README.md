@@ -1,4 +1,4 @@
-## Weblcash E-commerce Ejemplo
+## Webclash E-commerce Ejemplo
 
 1.- Para poder ejecutar la aplicación debes primero clonar el repositorio.
 
